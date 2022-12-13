@@ -1,4 +1,4 @@
-# Embark on youe own potography adventure
+# Embark on your own photography adventure
 Projekt systemu regułowego
 ## Autorzy
 > Kacper Świderski 148110
