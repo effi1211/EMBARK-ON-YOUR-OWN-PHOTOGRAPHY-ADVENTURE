@@ -1,0 +1,35 @@
+package com.sample
+
+import javax.swing.*
+ 
+
+declare Pytanie
+	pytanie: String;
+	odpowiedzi: String[]
+end
+
+declare o
+	pytanie: String;
+	odpowiedzi: String[]
+end
+
+function void wyswietlOkno(Pytanie pytanie){
+	
+	//wyswietli okienko i zwraca nr odpowiedzi:
+	int odpowiedz = JOptionPane.showOptionDialog(null,pytanie.getPytanie() , "BOOP", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, pytanie.getOdpowiedzi(), null);	
+	System.out.println(odpowiedz);
+}
+
+rule "zapytaj o goshe"
+	when
+	then
+	Pytanie pytanie = new Pytanie("gosha?",new String[] {"karr","KARRRR"});
+	wyswietlOkno(pytanie);
+end
+
+rule "hotel?"
+	when
+	then
+	Pytanie pytanie = new Pytanie("hotel?",new String[] {"Trivago"});
+	wyswietlOkno(pytanie);
+end
