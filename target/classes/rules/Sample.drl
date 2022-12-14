@@ -8,28 +8,33 @@ declare Pytanie
 	odpowiedzi: String[]
 end
 
-declare o
+declare Odpowiedz
 	pytanie: String;
-	odpowiedzi: String[]
+	odpowiedz: String
 end
 
-function void wyswietlOkno(Pytanie pytanie){
+function Odpowiedz wyswietlOkno(Pytanie pytanie){
 	
 	//wyswietli okienko i zwraca nr odpowiedzi:
-	int odpowiedz = JOptionPane.showOptionDialog(null,pytanie.getPytanie() , "BOOP", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, pytanie.getOdpowiedzi(), null);	
-	System.out.println(odpowiedz);
+	int nrOdp = JOptionPane.showOptionDialog(null,pytanie.getPytanie() , "Pytanie", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, pytanie.getOdpowiedzi(), null);	
+	//System.out.println(pytanie.getPytanie());
+	Odpowiedz odp = new Odpowiedz(pytanie.getPytanie(), pytanie.getOdpowiedzi()[nrOdp]);
+	//System.out.println(odp.getPytanie());
+	//System.out.println(odp.getOdpowiedz());
+	return odp;
 }
 
 rule "zapytaj o goshe"
 	when
 	then
 	Pytanie pytanie = new Pytanie("gosha?",new String[] {"karr","KARRRR"});
-	wyswietlOkno(pytanie);
+	insert(wyswietlOkno(pytanie));
 end
 
 rule "hotel?"
 	when
+		Odpowiedz(pytanie == "gosha?" && odpowiedz == "KARRRR")
 	then
 	Pytanie pytanie = new Pytanie("hotel?",new String[] {"Trivago"});
-	wyswietlOkno(pytanie);
+	insert(wyswietlOkno(pytanie));
 end
