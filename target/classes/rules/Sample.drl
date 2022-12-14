@@ -16,25 +16,38 @@ end
 function Odpowiedz wyswietlOkno(Pytanie pytanie){
 	
 	//wyswietli okienko i zwraca nr odpowiedzi:
-	int nrOdp = JOptionPane.showOptionDialog(null,pytanie.getPytanie() , "Pytanie", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, pytanie.getOdpowiedzi(), null);	
-	//System.out.println(pytanie.getPytanie());
+	int nrOdp = JOptionPane.showOptionDialog(null,pytanie.getPytanie() , "Pytanie", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, pytanie.getOdpowiedzi(), null);	
 	Odpowiedz odp = new Odpowiedz(pytanie.getPytanie(), pytanie.getOdpowiedzi()[nrOdp]);
-	//System.out.println(odp.getPytanie());
-	//System.out.println(odp.getOdpowiedz());
 	return odp;
 }
 
-rule "zapytaj o goshe"
+rule "Do I feel like shooting today?"
 	when
 	then
-	Pytanie pytanie = new Pytanie("gosha?",new String[] {"karr","KARRRR"});
+	Pytanie pytanie = new Pytanie("Do I feel like shooting today?",new String[] {"Yes","No"});
 	insert(wyswietlOkno(pytanie));
 end
 
-rule "hotel?"
+rule "Do I want to shoot myself?"
 	when
-		Odpowiedz(pytanie == "gosha?" && odpowiedz == "KARRRR")
+		Odpowiedz(pytanie == "Do I feel like shooting today?" && odpowiedz == "Yes")
 	then
-	Pytanie pytanie = new Pytanie("hotel?",new String[] {"Trivago"});
+	Pytanie pytanie = new Pytanie("Do I want to shoot myself?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I someone else to take my photo?"
+	when
+		Odpowiedz(pytanie == "Do I want to shoot myself?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Do I someone else to take my photo?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Am I feeling artistic today?"
+	when
+		Odpowiedz(pytanie == "Do I someone else to take my photo?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Am I feeling artistic today?",new String[] {"Yes", "No"});
 	insert(wyswietlOkno(pytanie));
 end
