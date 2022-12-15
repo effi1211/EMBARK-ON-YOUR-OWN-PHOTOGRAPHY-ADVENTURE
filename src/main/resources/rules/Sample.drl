@@ -170,7 +170,23 @@ end
 
 rule "Do I want more confidence in myself or with my photography?"
 	when
-		Odpowiedz(pytanie == "Do I want to be more confident?")
+		Odpowiedz(pytanie == "Do I want to be more confident?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Do I want more confidence in myself or with my photography?",new String[] {"Myself", "My photography"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "lack of confidence"
+	when
+		Odpowiedz(pytanie == "Do I want to be more confident?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Your lack of confidence is holding your back from reaching your dreams. Let's work on it!",new String[] {"OK!"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want more confidence in myself or with my photography?2"
+	when
+		Odpowiedz(pytanie == "Your lack of confidence is holding your back from reaching your dreams. Let's work on it!" && odpowiedz == "OK!")
 	then
 	Pytanie pytanie = new Pytanie("Do I want more confidence in myself or with my photography?",new String[] {"Myself", "My photography"});
 	insert(wyswietlOkno(pytanie));
@@ -183,7 +199,6 @@ rule "Make a list of low risk things that scare you. Do one a day."
 	Pytanie pytanie = new Pytanie("Make a list of low risk things that scare you. Do one a day.",new String[] {});
 	insert(wyswietlOkno(pytanie));
 end
-
 
 rule "Am I more scared of photographing strangers or what others think of my photography?"
 	when
@@ -213,7 +228,31 @@ rule "Ask strangers to make their portrait. Keep asking until you get 10 people 
 	when
 		Odpowiedz(pytanie == "Do I want to converse with the subjects?" && odpowiedz == "Yes")
 	then
-	Pytanie pytanie = new Pytanie("Ask strangers to make their portrait. Keep asking until you get 10 people to say 'yes'.",new String[] {});
+	Pytanie pytanie = new Pytanie("Ask strangers to make their portrait. Keep asking until you get 10 people to say 'yes'.",new String[] {"OK!"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Ready to take it to the next step?"
+	when
+		Odpowiedz(pytanie == "Ask strangers to make their portrait. Keep asking until you get 10 people to say 'yes'." && odpowiedz == "OK!")
+	then
+	Pytanie pytanie = new Pytanie("Ready to take it to the next step?",new String[] {"Yes","No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Good job on making it here!"
+	when
+		Odpowiedz(pytanie == "Ready to take it to the next step?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Good job on making it here! Keep working at it until you are ready to progress.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "10, eric or how long"
+	when
+		Odpowiedz(pytanie == "Ready to take it to the next step?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Try to get 10 people to say 'no' to your request of photographing them, \nconquer your fears, meet new peers. Attend on Eric Kim workshop \nor see how long you can photograph someone untill they walk away.",new String[] {});
 	insert(wyswietlOkno(pytanie));
 end
 
@@ -366,5 +405,197 @@ rule "Have a photoshoot of your loved ones at home."
 		Odpowiedz(pytanie == "Do I want to photography objects?" && odpowiedz == "No")
 	then
 	Pytanie pytanie = new Pytanie("Have a photoshoot of your loved ones at home.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Am I up for a challenge?"
+	when
+		Odpowiedz(pytanie == "Choose between: where to shoot or what to shoot." && odpowiedz == "What")
+	then
+	Pytanie pytanie = new Pytanie("Am I up for a challenge?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Choose one topic"
+	when
+		Odpowiedz(pytanie == "Am I up for a challenge?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Choose one topic to do opposite of what you usually do",new String[] {"Settings", "Color palette", "Camera"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Distance"
+	when
+		Odpowiedz(pytanie == "Choose one topic to do opposite of what you usually do" && odpowiedz == "Settings")
+	then
+	Pytanie pytanie = new Pytanie("Do I usually shoot from a far distance?",new String[] {"Yes","No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "3 feet"
+	when
+		Odpowiedz(pytanie == "Do I usually shoot from a far distance?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Prefocus your lens to .7m (3feet) and only shoot at that distance for 1 month.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "macro"
+	when
+		Odpowiedz(pytanie == "Do I usually shoot from a far distance?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Only shoot macro for the day.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Color palette"
+	when
+		Odpowiedz(pytanie == "Choose one topic to do opposite of what you usually do" && odpowiedz == "Color palette")
+	then
+	Pytanie pytanie = new Pytanie("If you shoot during the day, shoot at night \nor if you shoot in b/w, shoot in color (vice versa).",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Am I feeling retro today?"
+	when
+		Odpowiedz(pytanie == "Choose one topic to do opposite of what you usually do" && odpowiedz == "Camera")
+	then
+	Pytanie pytanie = new Pytanie("Am I feeling retro today?",new String[] {"Yes","No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Am I patient?"
+	when
+		Odpowiedz(pytanie == "Am I feeling retro today?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Am I patient?",new String[] {"Yes","No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Use a disposable camera."
+	when
+		Odpowiedz(pytanie == "Am I patient?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Use a disposable camera.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Use a Fujifilm Instax."
+	when
+		Odpowiedz(pytanie == "Am I patient?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Use a Fujifilm Instax.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Only use your phone to shoot."
+	when
+		Odpowiedz(pytanie == "Am I feeling retro today?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Only use your phone to shoot.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Choose one topic to shoot"
+	when
+		Odpowiedz(pytanie == "Am I up for a challenge?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Choose one topic to shoot:",new String[] {"Juxtaposition", "Graphical Elements", "Emotion"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Choose one juxtaposition"
+	when
+		Odpowiedz(pytanie == "Choose one topic to shoot:" && odpowiedz == "Juxtaposition")
+	then
+	Pytanie pytanie = new Pytanie("Choose one:",new String[] {"Emotions", "Physical", "Colors"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "juxtaposition emotions"
+	when
+		Odpowiedz(pytanie == "Choose one:" && odpowiedz == "Emotions")
+	then
+	Pytanie pytanie = new Pytanie("Do a juxtaposition photo of emotions",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "juxtaposition physical"
+	when
+		Odpowiedz(pytanie == "Choose one:" && odpowiedz == "Physical")
+	then
+	Pytanie pytanie = new Pytanie("Do a juxtaposition photo of Physical",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "juxtaposition Colors"
+	when
+		Odpowiedz(pytanie == "Choose one:" && odpowiedz == "Colors")
+	then
+	Pytanie pytanie = new Pytanie("Do a juxtaposition photo of Colors",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Choose one graphical elements"
+	when
+		Odpowiedz(pytanie == "Choose one topic to shoot:" && odpowiedz == "Graphical Elements")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to concentrate on composition or shooting shapes?",new String[] {"Composition", "Shape"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "graphical elements composition"
+	when
+		Odpowiedz(pytanie == "Do I want to concentrate on composition or shooting shapes?" && odpowiedz == "Composition")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to shoot traditional compositions?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "graphical elements traditional composition"
+	when
+		Odpowiedz(pytanie == "Do I want to shoot traditional compositions?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Rule of thirds, \nFibonacci spiral \norGolden Rectangle",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "graphical elements nontraditional composition"
+	when
+		Odpowiedz(pytanie == "Do I want to shoot traditional compositions?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Center eye, \nHigh/low angle \nor Dutch angle",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "graphical elements shapes"
+	when
+		Odpowiedz(pytanie == "Do I want to concentrate on composition or shooting shapes?" && odpowiedz == "Shapes")
+	then
+	Pytanie pytanie = new Pytanie("Shoot squares, \nShoot triangles \norShoot circles",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Choose one Emotion"
+	when
+		Odpowiedz(pytanie == "Choose one topic to shoot:" && odpowiedz == "Emotion")
+	then
+	Pytanie pytanie = new Pytanie("Choose between: face or body",new String[] {"Face", "Body"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "facial expressions today"
+	when
+		Odpowiedz(pytanie == "Choose between: face or body" && odpowiedz == "Face")
+	then
+	Pytanie pytanie = new Pytanie("Shoot only facial expressions today.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "only body"
+	when
+		Odpowiedz(pytanie == "Choose between: face or body" && odpowiedz == "Body")
+	then
+	Pytanie pytanie = new Pytanie("Shoot only body gestures today.",new String[] {});
 	insert(wyswietlOkno(pytanie));
 end
