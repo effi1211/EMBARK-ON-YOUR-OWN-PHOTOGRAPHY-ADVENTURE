@@ -17,8 +17,12 @@ function Odpowiedz wyswietlOkno(Pytanie pytanie){
 	
 	//wyswietli okienko i zwraca nr odpowiedzi:
 	int nrOdp = JOptionPane.showOptionDialog(null,pytanie.getPytanie() , "Pytanie", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, pytanie.getOdpowiedzi(), null);	
+	if (nrOdp<0){
+		return new Odpowiedz(pytanie.getPytanie(), "");
+		
+	}
 	Odpowiedz odp = new Odpowiedz(pytanie.getPytanie(), pytanie.getOdpowiedzi()[nrOdp]);
-	return odp;
+		return odp;
 }
 
 rule "Do I feel like shooting today?"
