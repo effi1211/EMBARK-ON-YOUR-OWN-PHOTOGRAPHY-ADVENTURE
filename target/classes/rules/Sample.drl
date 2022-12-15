@@ -28,6 +28,82 @@ rule "Do I feel like shooting today?"
 	insert(wyswietlOkno(pytanie));
 end
 
+//prawa strona
+
+rule "Do I want to do something photography related?"
+	when
+		Odpowiedz(pytanie == "Do I feel like shooting today?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to do something photography related?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Want to find inspiration for yourself?"
+	when
+		Odpowiedz(pytanie == "Do I want to do something photography related?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Want to find inspiration for yourself?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Feeling social today?"
+	when
+		Odpowiedz(pytanie == "Want to find inspiration for yourself?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Feeling social today?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Exhibiton or video."
+	when
+		Odpowiedz(pytanie == "Feeling social today?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Make a small exhibition of your photos at a local cafe or your house\nor make a video then post it on YouTube",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Work,publish or video."
+	when
+		Odpowiedz(pytanie == "Feeling social today?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Work on or make your blog/website, \nsefl publish and make a photobook or zine of your images. Give copies to your friends/family. Offer an ebook version online for free \nor make a video slideshow of your images",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Study the master of photography."
+	when
+		Odpowiedz(pytanie == "Want to find inspiration for yourself?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Study the master of photography:\nJosef Koudelka\nHenri Cartier-Bresson\nRichard Avedon",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Feeling mentally active today?"
+	when
+		Odpowiedz(pytanie == "Do I want to do something photography related?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Feeling mentally active today?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Cross-pollinate your interests..."
+	when
+		Odpowiedz(pytanie == "Feeling mentally active today?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Cross-pollinate your interests with music, drawing, writing, or other hobbies.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Take a walk..."
+	when
+		Odpowiedz(pytanie == "Feeling mentally active today?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Take a walk around the block. Just look around and do not make any photos.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+//lewa strona
+
 rule "Do I want to shoot myself?"
 	when
 		Odpowiedz(pytanie == "Do I feel like shooting today?" && odpowiedz == "Yes")
@@ -36,18 +112,259 @@ rule "Do I want to shoot myself?"
 	insert(wyswietlOkno(pytanie));
 end
 
-rule "Do I someone else to take my photo?"
+rule "Do I want someone else to take my photo?"
 	when
 		Odpowiedz(pytanie == "Do I want to shoot myself?" && odpowiedz == "Yes")
 	then
-	Pytanie pytanie = new Pytanie("Do I someone else to take my photo?",new String[] {"Yes", "No"});
+	Pytanie pytanie = new Pytanie("Do I want someone else to take my photo?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Ask a friend, partner, or a family member to make portraits of you."
+	when
+		Odpowiedz(pytanie == "Do I want someone else to take my photo?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Ask a friend, partner, or a family member to make portraits of you.",new String[] {});
 	insert(wyswietlOkno(pytanie));
 end
 
 rule "Am I feeling artistic today?"
 	when
-		Odpowiedz(pytanie == "Do I someone else to take my photo?" && odpowiedz == "No")
+		Odpowiedz(pytanie == "Do I want someone else to take my photo?" && odpowiedz == "No")
 	then
 	Pytanie pytanie = new Pytanie("Am I feeling artistic today?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Shoot your own shadow."
+	when
+		Odpowiedz(pytanie == "Am I feeling artistic today?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Shoot your own shadow.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Make selfies in the mirror."
+	when
+		Odpowiedz(pytanie == "Am I feeling artistic today?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Make selfies in the mirror.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Is it because I lack confidence in having my picture taken?"
+	when
+		Odpowiedz(pytanie == "Do I want to shoot myself?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Is it because I lack confidence in having my picture taken?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want to be more confident?"
+	when
+		Odpowiedz(pytanie == "Is it because I lack confidence in having my picture taken?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to be more confident?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want more confidence in myself or with my photography?"
+	when
+		Odpowiedz(pytanie == "Do I want to be more confident?")
+	then
+	Pytanie pytanie = new Pytanie("Do I want more confidence in myself or with my photography?",new String[] {"Myself", "My photography"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Make a list of low risk things that scare you. Do one a day."
+	when
+		Odpowiedz(pytanie == "Do I want more confidence in myself or with my photography?" && odpowiedz == "Myself")
+	then
+	Pytanie pytanie = new Pytanie("Make a list of low risk things that scare you. Do one a day.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+
+rule "Am I more scared of photographing strangers or what others think of my photography?"
+	when
+		Odpowiedz(pytanie == "Do I want more confidence in myself or with my photography?" && odpowiedz == "My photography")
+	then
+	Pytanie pytanie = new Pytanie("Am I more scared of photographing strangers or what others think of my photography?",new String[] {"Strangers","What others think"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Want to jump in head first?"
+	when
+		Odpowiedz(pytanie == "Am I more scared of photographing strangers or what others think of my photography?" && odpowiedz == "Strangers")
+	then
+	Pytanie pytanie = new Pytanie("Want to jump in head first?",new String[] {"Yes","No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want to converse with the subjects?"
+	when
+		Odpowiedz(pytanie == "Want to jump in head first?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to converse with the subjects?",new String[] {"Yes","No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Ask strangers to make their portrait. Keep asking until you get 10 people to say 'yes'."
+	when
+		Odpowiedz(pytanie == "Do I want to converse with the subjects?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Ask strangers to make their portrait. Keep asking until you get 10 people to say 'yes'.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Use a flash. You'll see people don't really care."
+	when
+		Odpowiedz(pytanie == "Do I want to converse with the subjects?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Use a flash. You'll see people don't really care.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want to be closer or further from the subject(s)?"
+	when
+		Odpowiedz(pytanie == "Want to jump in head first?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to be closer or further from the subject(s)?",new String[] {"Closer","Furter"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "The Video Technique."
+	when
+		Odpowiedz(pytanie == "Do I want to be closer or further from the subject(s)?" && odpowiedz == "Closer")
+	then
+	Pytanie pytanie = new Pytanie("The Video Technique:\n1. Pretend to record a video\n2. Move closer to the subject\n3. Take your photo",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "The Fishing Technique."
+	when
+		Odpowiedz(pytanie == "Do I want to be closer or further from the subject(s)?" && odpowiedz == "Furter")
+	then
+	Pytanie pytanie = new Pytanie("The Fishing Technique:\n1. Choose your scene\n2. Wait for the subject to enter your frame\n3. Take your photo",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Is it because sharing your photos scares me or from the lack of 'likes'?"
+	when
+		Odpowiedz(pytanie == "Am I more scared of photographing strangers or what others think of my photography?" && odpowiedz == "What others think")
+	then
+	Pytanie pytanie = new Pytanie("Is it because sharing your photos scares me or from the lack of 'likes'?",new String[] {"Sharing","Lack of likes"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Post photos that YOU love. If you love them, others will too."
+	when
+		Odpowiedz(pytanie == "Is it because sharing your photos scares me or from the lack of 'likes'?" && odpowiedz == "Sharing")
+	then
+	Pytanie pytanie = new Pytanie("Post photos that YOU love. If you love them, others will too.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Delete your Instagram to avoid jealousy/comparing yourself from other photographers."
+	when
+		Odpowiedz(pytanie == "Is it because sharing your photos scares me or from the lack of 'likes'?" && odpowiedz == "Lack of likes")
+	then
+	Pytanie pytanie = new Pytanie("Delete your Instagram to avoid jealousy/comparing yourself from other photographers.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Choose between: where to shoot or what to shoot."
+	when
+		Odpowiedz(pytanie == "Is it because I lack confidence in having my picture taken?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Choose between: where to shoot or what to shoot.",new String[] {"Where", "What"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want to leave home?"
+	when
+		Odpowiedz(pytanie == "Choose between: where to shoot or what to shoot." && odpowiedz == "Where")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to leave home?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want to travel close to home?"
+	when
+		Odpowiedz(pytanie == "Do I want to leave home?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to travel close to home?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want to stay within walking distance?"
+	when
+		Odpowiedz(pytanie == "Do I want to travel close to home?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to stay within walking distance?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Stay within 5 blocks of your home to shoot."
+	when
+		Odpowiedz(pytanie == "Do I want to stay within walking distance?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Stay within 5 blocks of your home to shoot.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Go to the closest big city to shoot."
+	when
+		Odpowiedz(pytanie == "Do I want to stay within walking distance?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Go to the closest big city to shoot.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want to go overseas?"
+	when
+		Odpowiedz(pytanie == "Do I want to travel close to home?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to go overseas?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Plan on international photography adventure."
+	when
+		Odpowiedz(pytanie == "Do I want to go overseas?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Plan on international photography adventure.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Travel outside of your house state to shoot."
+	when
+		Odpowiedz(pytanie == "Do I want to go overseas?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Travel outside of your house state to shoot.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Do I want to photography objects?"
+	when
+		Odpowiedz(pytanie == "Do I want to leave home?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Do I want to photography objects?",new String[] {"Yes", "No"});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Shoot what's in your camera bag."
+	when
+		Odpowiedz(pytanie == "Do I want to photography objects?" && odpowiedz == "Yes")
+	then
+	Pytanie pytanie = new Pytanie("Shoot what's in your camera bag.",new String[] {});
+	insert(wyswietlOkno(pytanie));
+end
+
+rule "Have a photoshoot of your loved ones at home."
+	when
+		Odpowiedz(pytanie == "Do I want to photography objects?" && odpowiedz == "No")
+	then
+	Pytanie pytanie = new Pytanie("Have a photoshoot of your loved ones at home.",new String[] {});
 	insert(wyswietlOkno(pytanie));
 end
